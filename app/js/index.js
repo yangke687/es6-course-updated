@@ -7,32 +7,11 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-import Animal from './Animal';
-logTitle('Const Keywords');
+logTitle('Template Literals');
 /* coding examples */
+const name = "Anna";
+const country = "Canada";
+const age = 33;
 
-const name = 'Maria';
-
-/* SyntaxError: "name" is read-only */
-//name = '1';
-
-log(name);
-
-/* 
- * object property can be mutable 
- * although object defined as const 
- */
-
-const person = {};
-person['name'] = 'Maria in Object';
-
-log(person.name);
-
-/*
- * array elements can be mutable
- * although array defined as const
- */
-const array = [];
-array.push('Maria in Array');
-
-log(array[0]);
+log("Name: " + name + " Country: " + country + " Age: " + age);
+log(`Name: ${name} Country: ${country} Age: ${age}`);
