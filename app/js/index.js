@@ -8,16 +8,31 @@ import {
 } from 'logger';
 /* your imports */
 import Animal from './Animal';
-logTitle('Let Keywords');
+logTitle('Const Keywords');
 /* coding examples */
 
+const name = 'Maria';
+
+/* SyntaxError: "name" is read-only */
+//name = '1';
+
+log(name);
+
 /* 
-	the variable i was only can be seen
-	within the for-loop block scope
-*/
+ * object property can be mutable 
+ * although object defined as const 
+ */
 
-for (let i = 0; i < 10; i++) {
-	log(i);
-}
+const person = {};
+person['name'] = 'Maria in Object';
 
-console.log(i);
+log(person.name);
+
+/*
+ * array elements can be mutable
+ * although array defined as const
+ */
+const array = [];
+array.push('Maria in Array');
+
+log(array[0]);
