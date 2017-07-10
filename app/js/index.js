@@ -7,26 +7,22 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-logTitle('Spread Operator Arrays');
+logTitle('Spread Operator Objects');
 /* coding examples */
-const arrayOne = ['Marian', 'Anna', 'Alex'];
-const arrayTwo = ['Sald', 'Ismall', 'Aisha'];
+const address = {
+	city: 'LA',
+	country: 'USA',
+	postCode: 'LA44'
+};
 
-// array
-const concatArray = [...arrayOne, ...arrayTwo];
+const name = {
+	firstName: 'Andy',
+	lastName: 'Jones',
+};
 
-concatArray.forEach((name) => {
-	log(name);
-});
+const person = {
+	...address,
+	...name
+};
 
-// string
-const name = 'Marian';
-const nameToArray = [...name];
-nameToArray.forEach((letter) => {
-	log(letter);
-});
-
-// functions
-const addNumbers = (n1, n2, n3) => n1 + n2 + n3;
-const numbers = [1, 5, 9];
-log(addNumbers(...numbers));
+log(JSON.stringify(person, null, 2));
