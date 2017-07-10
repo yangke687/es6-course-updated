@@ -7,22 +7,17 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-//import * as Math from './Math';
-import {
-	add,
-	sub,
-	div,
-	mul,
-	PI
-} from './Math';
 import Animal from './Animal';
-logTitle('Title');
+logTitle('Let Keywords');
 /* coding examples */
-log(add(2, 2));
-log(sub(2, 2));
-log(div(2, 2));
-log(mul(2, 2));
-log(PI);
 
-const animal = new Animal();
-log(animal.getClassType());
+/* 
+	the variable i was only can be seen
+	within the for-loop block scope
+*/
+
+for (let i = 0; i < 10; i++) {
+	log(i);
+}
+
+console.log(i);
