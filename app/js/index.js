@@ -7,23 +7,23 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-logTitle('Lexical this');
+logTitle('Enhanced Object Properties');
 /* coding examples */
 
-const person = {
-	name: 'Alex',
-	cars: ['ferrari', 'lambo'],
-	toString: function() {
-		log(`${this.name} has ${this.cars}`);
-		this.cars.forEach(car => {
-			log(`${this.name} has ${car}`);
-		});
-		// equals to 
-		log('==================');
-		this.cars.forEach(function(car) {
-			log(`${this.name} has ${car}`);
-		}.bind(this));
-	}
-}
+const pricePropName = "PRICE";
 
-person.toString();
+const calculator = (name, price) => {
+	return {
+		name,
+		add(n1, n2) {
+			return n1 + n2;
+		},
+		[pricePropName.toLowerCase()]: price
+	}
+};
+
+const calc = new calculator('casio', 19.99);
+
+log(calc.name);
+log(calc.add(20, 20));
+log(calc.price);
