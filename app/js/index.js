@@ -7,19 +7,41 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-logTitle('Array Destructing');
+logTitle('Object Destructing');
 /* coding examples */
 
-const names = ['Anna', 'Mariam', 'Joe', 'Mark', 'Matt'];
+const getUser = () => {
+	return {
+		name: 'John',
+		surname: 'Doe',
+		gender: 'male',
+		address: {
+			country: 'United States',
+			city: 'California',
+			postCode: 'CA',
+			fullAddress: {
+				doorNumber: 22,
+				street: 'LA st',
+			}
+		},
+		age: 29,
+	}
+}
 
-const [anna, mariam, joe, mark, matt] = names;
+const user = getUser();
 
-log(anna);
-log(mariam);
-log(joe);
+const {
+	name,
+	age,
+	address: {
+		country,
+		city,
+		postCode,
+		fullAddress: {
+			doorNumber: number,
+			street,
+		}
+	}
+} = user;
 
-const [anna2, , joe2] = names;
-log(`${anna2} ${joe2}`);
-
-const [anna3, , joe3, ...restProps] = names;
-log(restProps);
+log(`${name} ${age} ${city} ${number} ${street}`);
