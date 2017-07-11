@@ -7,64 +7,24 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-logTitle('ES6 Classes');
+logTitle('Promise Object');
 /* coding examples */
 
-class Animal {
-	constructor(name, age) {
-		this.name = name;
-		this.age = age;
-		log(`${name} was created`);
-	}
+const promise = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve('data back from the server');
+	}, 3000);
 
-	static iAmStaticMethod() {
-		log('I am a static method inside of an Animal class');
-	}
+	// this method will be invoked first
+	setTimeout(() => {
+		reject('no data back from the server, there was an error')
+	}, 4000);
+});
 
-	eat() {
-		log(`${this.name} is eating`);
-	}
+promise.then(response => {
+	log(response);
+}).catch(error => {
+	log(error);
+});
 
-	sleep() {
-		log(`${this.name} is sleeping`);
-	}
-
-	wakeup() {
-		log(`${this.name} is waking up`);
-	}
-
-	logAge() {
-		log(`${this.name} is age at ${this.age}`);
-	}
-}
-
-class Dog extends Animal {
-	constructor(name, age, breed) {
-		super(name, age);
-		this.breed = breed;
-	}
-
-	logBreed() {
-		super.logAge();
-		log(`${this.name} is a ${this.breed}`);
-	}
-}
-
-const mike = new Dog('Sha', 2, 'Bulldog');
-mike.logBreed();
-
-Animal.iAmStaticMethod();
-
-/*const bobby = new Animal('bobby', 2);
-bobby.eat();
-bobby.sleep();
-bobby.wakeup();
-bobby.logAge();
-
-log('---------------------------------');
-
-const marshall = new Animal('marshall', 3);
-marshall.eat();
-marshall.sleep();
-marshall.wakeup();
-marshall.logAge();*/
+// promise all
