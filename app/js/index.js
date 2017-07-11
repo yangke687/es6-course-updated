@@ -53,6 +53,8 @@ class Dog extends Animal {
 const mike = new Dog('Sha', 2, 'Bulldog');
 mike.logBreed();
 
+Animal.iAmStaticMethod();
+
 /*const bobby = new Animal('bobby', 2);
 bobby.eat();
 bobby.sleep();
