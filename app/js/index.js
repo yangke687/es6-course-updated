@@ -7,11 +7,21 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-logTitle('Template Literals');
+logTitle('Arrow Functions');
 /* coding examples */
-const name = "Anna";
-const country = "Canada";
-const age = 33;
 
-log("Name: " + name + " Country: " + country + " Age: " + age);
-log(`Name: ${name} Country: ${country} Age: ${age}`);
+const hello = () => {
+	const es6 = 'ES6';
+	return `Hello, ${es6}`;
+};
+
+const powers = [1, 2, 3, 4, 5].map((num, index) => Math.pow(num, index));
+
+const add = (a, b) => a + b;
+
+const milesToKm = miles => miles * 1.60943;
+
+log(hello());
+log(powers);
+log(add(100, 100));
+log(milesToKm(100));
