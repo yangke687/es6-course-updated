@@ -7,18 +7,62 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-logTitle('Function Default Parameters');
+logTitle('ES6 Classes');
 /* coding examples */
 
-const calculatePay = (yearSalary, bonus = {
-	teamBonus: 0,
-	employeeBonus: 0,
-}) => {
-	return yearSalary + bonus.teamBonus + bonus.employeeBonus;
-};
+class Animal {
+	constructor(name, age) {
+		this.name = name;
+		this.age = age;
+		log(`${name} was created`);
+	}
 
-log(calculatePay(22000));
-log(calculatePay(22000, {
-	teamBonus: 1000,
-	employeeBonus: 5000
-}));
+	static iAmStaticMethod() {
+		log('I am a static method inside of an Animal class');
+	}
+
+	eat() {
+		log(`${this.name} is eating`);
+	}
+
+	sleep() {
+		log(`${this.name} is sleeping`);
+	}
+
+	wakeup() {
+		log(`${this.name} is waking up`);
+	}
+
+	logAge() {
+		log(`${this.name} is age at ${this.age}`);
+	}
+}
+
+class Dog extends Animal {
+	constructor(name, age, breed) {
+		super(name, age);
+		this.breed = breed;
+	}
+
+	logBreed() {
+		super.logAge();
+		log(`${this.name} is a ${this.breed}`);
+	}
+}
+
+const mike = new Dog('Sha', 2, 'Bulldog');
+mike.logBreed();
+
+/*const bobby = new Animal('bobby', 2);
+bobby.eat();
+bobby.sleep();
+bobby.wakeup();
+bobby.logAge();
+
+log('---------------------------------');
+
+const marshall = new Animal('marshall', 3);
+marshall.eat();
+marshall.sleep();
+marshall.wakeup();
+marshall.logAge();*/
