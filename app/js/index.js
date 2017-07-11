@@ -7,23 +7,19 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-logTitle('Enhanced Object Properties');
+logTitle('Array Destructing');
 /* coding examples */
 
-const pricePropName = "PRICE";
+const names = ['Anna', 'Mariam', 'Joe', 'Mark', 'Matt'];
 
-const calculator = (name, price) => {
-	return {
-		name,
-		add(n1, n2) {
-			return n1 + n2;
-		},
-		[pricePropName.toLowerCase()]: price
-	}
-};
+const [anna, mariam, joe, mark, matt] = names;
 
-const calc = new calculator('casio', 19.99);
+log(anna);
+log(mariam);
+log(joe);
 
-log(calc.name);
-log(calc.add(20, 20));
-log(calc.price);
+const [anna2, , joe2] = names;
+log(`${anna2} ${joe2}`);
+
+const [anna3, , joe3, ...restProps] = names;
+log(restProps);
