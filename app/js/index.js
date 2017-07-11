@@ -7,41 +7,18 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-logTitle('Object Destructing');
+logTitle('Function Default Parameters');
 /* coding examples */
 
-const getUser = () => {
-	return {
-		name: 'John',
-		surname: 'Doe',
-		gender: 'male',
-		address: {
-			country: 'United States',
-			city: 'California',
-			postCode: 'CA',
-			fullAddress: {
-				doorNumber: 22,
-				street: 'LA st',
-			}
-		},
-		age: 29,
-	}
-}
+const calculatePay = (yearSalary, bonus = {
+	teamBonus: 0,
+	employeeBonus: 0,
+}) => {
+	return yearSalary + bonus.teamBonus + bonus.employeeBonus;
+};
 
-const user = getUser();
-
-const {
-	name,
-	age,
-	address: {
-		country,
-		city,
-		postCode,
-		fullAddress: {
-			doorNumber: number,
-			street,
-		}
-	}
-} = user;
-
-log(`${name} ${age} ${city} ${number} ${street}`);
+log(calculatePay(22000));
+log(calculatePay(22000, {
+	teamBonus: 1000,
+	employeeBonus: 5000
+}));
