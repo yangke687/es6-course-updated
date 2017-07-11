@@ -45,7 +45,7 @@ const surnamesPromise = new Promise((resolve, reject) => {
 	}, 3000);
 });
 
-Promise.all([namesPromise, surnamesPromise])
+/*Promise.all([namesPromise, surnamesPromise])
 	.then(data => {
 		//log(data);
 		const [names, surnames] = data;
@@ -57,4 +57,20 @@ Promise.all([namesPromise, surnamesPromise])
 	})
 	.catch(error => {
 		log(error);
+	});*/
+
+	// realworld promise
+
+const getRandomUsers = n => {
+	const fetchRandomUsers = fetch(`https://randomuser.me/api/?results=${n}`);
+	fetchRandomUsers.then(data => {
+		data.json().then(randomUsers => {
+			randomUsers.results.forEach(user => {
+				const {gender, email} = user;
+				log(`${gender} ${email}`);
+			});
+		});
 	});
+}
+
+getRandomUsers(50);
