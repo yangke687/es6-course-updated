@@ -7,21 +7,23 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-logTitle('Arrow Functions');
+logTitle('Lexical this');
 /* coding examples */
 
-const hello = () => {
-	const es6 = 'ES6';
-	return `Hello, ${es6}`;
-};
+const person = {
+	name: 'Alex',
+	cars: ['ferrari', 'lambo'],
+	toString: function() {
+		log(`${this.name} has ${this.cars}`);
+		this.cars.forEach(car => {
+			log(`${this.name} has ${car}`);
+		});
+		// equals to 
+		log('==================');
+		this.cars.forEach(function(car) {
+			log(`${this.name} has ${car}`);
+		}.bind(this));
+	}
+}
 
-const powers = [1, 2, 3, 4, 5].map((num, index) => Math.pow(num, index));
-
-const add = (a, b) => a + b;
-
-const milesToKm = miles => miles * 1.60943;
-
-log(hello());
-log(powers);
-log(add(100, 100));
-log(milesToKm(100));
+person.toString();
