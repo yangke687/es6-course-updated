@@ -10,7 +10,7 @@ import {
 logTitle('Promise Object');
 /* coding examples */
 
-const promise = new Promise((resolve, reject) => {
+/*const promise = new Promise((resolve, reject) => {
 	setTimeout(() => {
 		resolve('data back from the server');
 	}, 3000);
@@ -18,13 +18,43 @@ const promise = new Promise((resolve, reject) => {
 	// this method will be invoked first
 	setTimeout(() => {
 		reject('no data back from the server, there was an error')
-	}, 4000);
+	}, 2000);
 });
 
 promise.then(response => {
 	log(response);
 }).catch(error => {
 	log(error);
-});
+});*/
 
 // promise all
+
+const namesPromise = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve(['Anna', 'Jones', 'Ali', 'Jake']);
+	}, 3000);
+
+	setTimeout(() => {
+		reject('no data back from server, there was an error');
+	}, 4000);
+});
+
+const surnamesPromise = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve(['Williams', 'Bravo', 'Mohammado', 'Smith']);
+	}, 3000);
+});
+
+Promise.all([namesPromise, surnamesPromise])
+	.then(data => {
+		//log(data);
+		const [names, surnames] = data;
+		for (var i=0; i<names.length; i++) {
+			const name = names[i];
+			const surname = surnames[i];
+			log(`${name} ${surname}`);
+		}
+	})
+	.catch(error => {
+		log(error);
+	});
