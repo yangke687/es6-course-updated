@@ -7,11 +7,12 @@ import {
 	logTitle
 } from 'logger';
 /* your imports */
-logTitle('Generators');
+import { coroutine as co } from 'bluebird';
+logTitle('Generators and Promises');
 /* coding examples */
 
 /* Generators Basic */
-const getNumbers = function* () {
+/*const getNumbers = function* () {
 	yield 1;
 	yield 'hello';
 	yield true;
@@ -25,11 +26,11 @@ log(numbersGen.next().value);
 log(numbersGen.next().value);
 log(numbersGen.next().value);
 log(numbersGen.next().value);
-log(numbersGen.next().value);
+log(numbersGen.next().value);*/
 
 /* Generators More */
 
-const enhancedGetNumbers = function* (numbers) {
+/*const enhancedGetNumbers = function* (numbers) {
 	for (var i=0; i<numbers.length; i++) {
 		yield numbers[i];
 	}
@@ -45,9 +46,38 @@ const interval = setInterval(() => {
 		const number = next.value;
 		log(number);
 	}
-}, 1000);
+}, 1000);*/
 
 /* Generators, Promises, Coroutines */
+
+/*const getRandomUsers = n => {
+	const fetchRandomUsers = fetch(`https://randomuser.me/api/?results=${n}`);
+	fetchRandomUsers.then(data => {
+		data.json().then(randomUsers => {
+			log(JSON.stringify(randomUsers.results.length));
+			randomUsers.results.forEach(user => {
+				const { gender, email } = user;
+				log(`${gender} ${email}`);
+			});
+		});
+	});
+}
+
+getRandomUsers(100);*/
+
+const getRandomUsers = co(function* (n) {
+	const fetchRandomUsers = yield fetch(`https://randomuser.me/api/?results=${n}`);
+	const data = yield fetchRandomUsers.json();
+	return data;
+});
+
+getRandomUsers(10).then(randomUsers => {
+	randomUsers.results.forEach(user => {
+		const { gender, email } = user;
+		log(`${gender} ${email}`);
+	})
+});
+
 
 
 
